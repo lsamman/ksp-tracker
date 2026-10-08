@@ -158,24 +158,7 @@
      "max": 5.0
     }
    },
-   "patches": [
-    {
-     "body": "Eve",
-     "sma": NaN,
-     "ecc": 1.0,
-     "inc": 81.24184402875979,
-     "lan": 98.91751098994746,
-     "argPe": 90.00000000000001,
-     "maae": 0.0,
-     "epoch": 542178867.967225,
-     "period": null,
-     "apA": null,
-     "peA": NaN,
-     "startUT": 542178867.967225,
-     "endUT": null,
-     "trans": "FINAL"
-    }
-   ],
+   "patches": [],
    "maneuvers": []
   },
   {
@@ -256,24 +239,7 @@
      "max": 920.0
     }
    },
-   "patches": [
-    {
-     "body": "Duna",
-     "sma": NaN,
-     "ecc": 1.0,
-     "inc": 45.628903243455035,
-     "lan": 345.9083888559119,
-     "argPe": 90.0,
-     "maae": 0.0,
-     "epoch": 542178867.967225,
-     "period": null,
-     "apA": null,
-     "peA": NaN,
-     "startUT": 542178867.967225,
-     "endUT": null,
-     "trans": "FINAL"
-    }
-   ],
+   "patches": [],
    "maneuvers": []
   },
   {
@@ -549,24 +515,7 @@
      "max": 25.0
     }
    },
-   "patches": [
-    {
-     "body": "Duna",
-     "sma": NaN,
-     "ecc": 1.0,
-     "inc": 93.00166787567431,
-     "lan": 295.1568499646406,
-     "argPe": 90.00000000000001,
-     "maae": 0.0,
-     "epoch": 542178867.967225,
-     "period": null,
-     "apA": null,
-     "peA": NaN,
-     "startUT": 542178867.967225,
-     "endUT": null,
-     "trans": "FINAL"
-    }
-   ],
+   "patches": [],
    "maneuvers": []
   },
   {
@@ -1006,24 +955,7 @@
      "max": 15.0
     }
    },
-   "patches": [
-    {
-     "body": "Gilly",
-     "sma": 0.0,
-     "ecc": 1.0000000000000002,
-     "inc": 96.62495028098698,
-     "lan": 109.4653578517034,
-     "argPe": 90.0,
-     "maae": Infinity,
-     "epoch": 542178867.967225,
-     "period": null,
-     "apA": null,
-     "peA": -13000.0,
-     "startUT": 542178867.967225,
-     "endUT": null,
-     "trans": "FINAL"
-    }
-   ],
+   "patches": [],
    "maneuvers": []
   },
   {
