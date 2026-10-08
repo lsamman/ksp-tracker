@@ -70,7 +70,7 @@ function nowUT() {
 
 // ---------- scene ----------
 const sceneEl = $('scene');
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 sceneEl.appendChild(renderer.domElement);
 const labelRenderer = new CSS2DRenderer();
@@ -78,24 +78,30 @@ labelRenderer.domElement.style.cssText = 'position:absolute;inset:0;pointer-even
 sceneEl.appendChild(labelRenderer.domElement);
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 5000);
-camera.position.set(0, 40, 55);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.001, 1e12);
+camera.position.set(0, 4e6, 6e6);   // units are km; replaced once bodies load
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+controls.minDistance = 0.02;
+controls.maxDistance = 1e11;
+controls.zoomSpeed = 1.4;
 scene.add(new THREE.AmbientLight(0x8090b0, 0.55));
 const sunLight = new THREE.PointLight(0xffffff, 2.2, 0, 0);
 scene.add(sunLight);
 
-// star field
-{
+// star field: follows the camera so it always sits at infinity
+const stars = (() => {
   const g = new THREE.BufferGeometry(), n = 1800, p = new Float32Array(n * 3);
   for (let i = 0; i < n; i++) {
-    const v = new THREE.Vector3().randomDirection().multiplyScalar(2500);
+    const v = new THREE.Vector3().randomDirection().multiplyScalar(5e11);
     p.set([v.x, v.y, v.z], i * 3);
   }
   g.setAttribute('position', new THREE.BufferAttribute(p, 3));
-  scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9aa8c8, size: 1.4, sizeAttenuation: false })));
-}
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9aa8c8, size: 1.4, sizeAttenuation: false, fog: false }));
+  pts.frustumCulled = false;
+  scene.add(pts);
+  return pts;
+})();
 
 function resize() {
   const w = innerWidth, h = innerHeight;
@@ -104,17 +110,11 @@ function resize() {
 }
 addEventListener('resize', resize); resize();
 
-// ---------- compressed scale ----------
-// Offsets from a parent body are drawn at Rdisp * sqrt(d / R): ordering is preserved,
-// while moons, planets and low orbits all stay visible in one scene.
+// ---------- true scale ----------
+// 1 scene unit = 1 km. Positions are exact (doubles on the CPU); the log depth buffer and a
+// camera that always orbits its target keep both planets and low orbits renderable.
 function isSun(b) { return !b.orbit; }
-function rDisp(b) { return isSun(b) ? 1.6 : Math.min(1.2, Math.max(0.05, 0.25 * Math.pow(b.radius / 6e5, 0.45))); }
-function compress(rel, b) {
-  const d = Math.hypot(rel[0], rel[1], rel[2]);
-  if (d < 1e-6) return new THREE.Vector3();
-  const k = (d <= b.radius ? rDisp(b) : rDisp(b) * Math.sqrt(d / b.radius)) / d;
-  return new THREE.Vector3(rel[0] * k, rel[1] * k, rel[2] * k);
-}
+function toKm(rel) { return new THREE.Vector3(rel[0] / 1000, rel[1] / 1000, rel[2] / 1000); }
 
 function bodyPos(name, t) {
   const key = name;
@@ -123,23 +123,20 @@ function bodyPos(name, t) {
   let p = new THREE.Vector3();
   if (b && b.orbit && bodies[b.orbit.body]) {
     const par = bodies[b.orbit.body];
-    p = bodyPos(par.name, t).clone().add(compress(stateAt(b.orbit, par.mu, t), par));
+    p = bodyPos(par.name, t).clone().add(toKm(stateAt(b.orbit, par.mu, t)));
   }
   posCache.set(key, p);
   return p;
 }
 
 function pathPoints(o, parent) {
-  return samplePath(o, parent.mu).map((r) => compress(r, parent));
+  return samplePath(o, parent.mu, 360).map(toKm);
 }
 
 function makeLine(points, color, dashed) {
   const g = new THREE.BufferGeometry().setFromPoints(points);
-  const m = dashed
-    ? new THREE.LineDashedMaterial({ color, dashSize: 0.15, gapSize: 0.1, transparent: true, opacity: 0.9 })
-    : new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.6 });
-  const l = new THREE.Line(g, m);
-  if (dashed) l.computeLineDistances();
+  const l = new THREE.Line(g, new THREE.LineBasicMaterial({ color, transparent: true, opacity: dashed ? 0.95 : 0.7 }));
+  l.frustumCulled = false;
   return l;
 }
 
@@ -150,6 +147,20 @@ function makeLabel(text, cls, onClick) {
   return new CSS2DObject(el);
 }
 
+// ---------- textures (exported from the game by the mod) ----------
+const texLoader = new THREE.TextureLoader();
+function loadTexture(b, mesh) {
+  const base = repo ? `https://raw.githubusercontent.com/${repo}/${DATA_BRANCH}/data/textures/` : 'data/textures/';
+  texLoader.load(base + encodeURIComponent(b.name) + '.jpg', (tex) => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    const m = mesh.material;
+    m.map = tex;
+    m.color.set(0xffffff);
+    m.needsUpdate = true;
+  }, undefined, () => { /* no texture exported yet: keep flat colour */ });
+}
+
 // ---------- build bodies ----------
 function buildBodies() {
   for (const o of bodyObjs.values()) { scene.remove(o.group); scene.remove(o.orbitGroup); }
@@ -158,12 +169,12 @@ function buildBodies() {
     const col = new THREE.Color('#' + (b.color || '8899aa'));
     const group = new THREE.Group();
     const sun = isSun(b);
-    const mesh = new THREE.Mesh(new THREE.SphereGeometry(rDisp(b), 32, 20),
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(b.radius / 1000, 96, 64),
       sun ? new THREE.MeshBasicMaterial({ color: 0xffd27a })
-          : new THREE.MeshStandardMaterial({ color: col.clone().lerp(new THREE.Color(0xffffff), 0.25), roughness: 0.9 }));
+          : new THREE.MeshStandardMaterial({ color: col.clone().lerp(new THREE.Color(0xffffff), 0.25), roughness: 0.95, metalness: 0 }));
     group.add(mesh);
+    loadTexture(b, mesh);
     const label = makeLabel(b.name, 'body', () => select('body', b.name));
-    label.position.set(rDisp(b) + 0.05, 0, 0);
     group.add(label);
     scene.add(group);
 
@@ -204,7 +215,7 @@ function buildVessels() {
       if (!patch || !bodies[patch.body]) return;
       const rel = stateAt(patch, bodies[patch.body].mu, m.ut);
       const l = makeLabel(`ΔV ${m.dvMag.toFixed(0)} m/s`, 'node', () => select('vessel', String(v.id)));
-      l.position.copy(compress(rel, bodies[patch.body]));
+      l.position.copy(toKm(rel));
       const g = new THREE.Group(); g.add(l); scene.add(g); root.push(g);
       g.userData.body = patch.body;
     });
@@ -214,16 +225,17 @@ function buildVessels() {
 
 // ---------- per-frame update ----------
 function vesselRel(v, t) {
-  // returns {body, vec} where vec is the compressed offset from that body
+  // returns {body, vec} where vec is the offset from that body in km
   const patches = v.patches || [];
   if (['LANDED', 'SPLASHED', 'PRELAUNCH'].includes(v.situation) || !patches.length) {
     const b = bodies[v.body]; if (!b) return null;
     const la = v.lat * Math.PI / 180, lo = v.lon * Math.PI / 180;
-    return { body: b, vec: compress([Math.cos(la) * Math.cos(lo) * b.radius, Math.sin(la) * b.radius, -Math.cos(la) * Math.sin(lo) * b.radius], b) };
+    const R = b.radius + Math.max(0, v.alt || 0);
+    return { body: b, vec: toKm([Math.cos(la) * Math.cos(lo) * R, Math.sin(la) * R, -Math.cos(la) * Math.sin(lo) * R]) };
   }
   let p = patches.find((q) => t >= q.startUT && t < q.endUT) || (t < patches[0].startUT ? patches[0] : patches[patches.length - 1]);
   const b = bodies[p.body]; if (!b) return null;
-  return { body: b, vec: compress(stateAt(p, b.mu, t), b) };
+  return { body: b, vec: toKm(stateAt(p, b.mu, t)) };
 }
 
 function frame() {
@@ -242,6 +254,9 @@ function frame() {
   }
   followSelection(t);
   controls.update();
+  stars.position.copy(camera.position);
+  camera.near = Math.max(1e-3, camera.position.distanceTo(controls.target) * 1e-3);
+  camera.updateProjectionMatrix();
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
 }
@@ -257,10 +272,11 @@ function followSelection(t) {
     camera.position.add(d); controls.target.copy(target);
   } else {
     // new selection: glide the target and zoom in
-    const dist = selected.kind === 'body' ? rDisp(bodies[selected.key]) * 6 : 1.2;
+    const host = selected.kind === 'body' ? bodies[selected.key] : bodies[vesselObjs.get(selected.key)?.v.body];
+    const dist = host ? host.radius / 1000 * (selected.kind === 'body' ? 3.2 : 2.6) : 1000;
     controls.target.copy(target);
     const dir = camera.position.clone().sub(target).normalize();
-    camera.position.copy(target).addScaledVector(dir, Math.max(dist, 0.5));
+    camera.position.copy(target).addScaledVector(dir, dist);
     followPrev = { key: selected.key };
   }
 }
@@ -447,7 +463,14 @@ async function refresh() {
   if (b?.bodies && JSON.stringify(Object.keys(bodies)) !== JSON.stringify(b.bodies.map((x) => x.name))) {
     bodies = Object.fromEntries(b.bodies.map((x) => [x.name, x])); rebuildBodies = true;
   }
-  if (rebuildBodies) buildBodies();
+  if (rebuildBodies) {
+    buildBodies();
+    if (!selected) {
+      const far = Math.max(...Object.values(bodies).map((x) => (x.orbit ? Math.abs(x.orbit.sma) * (1 + x.orbit.ecc) : 0)), 1) / 1000;
+      controls.target.set(0, 0, 0);
+      camera.position.set(0, far * 1.1, far * 1.6);
+    }
+  }
   if (h) history = h;
   if (n) { mergeNotes(n); saveLocalNotes(notes); }
   if (v) {

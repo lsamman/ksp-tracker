@@ -12,6 +12,7 @@ mcs -target:library -out:out/FleetTracker.dll -nowarn:0618 \
   -r:"$MANAGED/UnityEngine.dll" \
   -r:"$MANAGED/UnityEngine.CoreModule.dll" \
   -r:"$MANAGED/UnityEngine.UI.dll" \
+  -r:"$MANAGED/UnityEngine.ImageConversionModule.dll" \
   -r:"$MANAGED/UnityEngine.InputLegacyModule.dll" \
   FleetTracker.cs
 echo "built out/FleetTracker.dll"

@@ -29,6 +29,8 @@ namespace FleetTracker
         Dictionary<string, HistoryEntry> history = new Dictionary<string, HistoryEntry>();
         string historySave;
         bool configured;
+        readonly HashSet<string> texDone = new HashSet<string>();
+        readonly HashSet<string> texBusy = new HashSet<string>();
 
         class HistoryEntry
         {
@@ -75,6 +77,8 @@ namespace FleetTracker
                     interval = Mathf.Max(15f, i);
                 configured = !string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(repo) && token != "PASTE_TOKEN_HERE";
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072; // TLS 1.2
+                string tf = TexMarkerPath();
+                if (repo != null && File.Exists(tf)) foreach (string l in File.ReadAllLines(tf)) if (l.Length > 0) texDone.Add(l);
             }
             catch (Exception e) { Log("config error: " + e); }
         }
@@ -188,6 +192,8 @@ namespace FleetTracker
             double now = Time.realtimeSinceStartup;
             bool changed = h != lastHash;
             bool heartbeat = now - lastUploadReal >= HeartbeatSeconds;
+            var texes = ExportPendingTextures();
+            if (texes.Count > 0) ThreadPool.QueueUserWorkItem(_ => UploadTextures(texes));
             if (!changed && !heartbeat) return;
             lastHash = h;
             lastUploadReal = now;
@@ -451,6 +457,88 @@ namespace FleetTracker
             return s.Append("}}").ToString();
         }
 
+        // ---- body textures (map-view diffuse maps, exported once per body) ----
+
+        string TexMarkerPath()
+        {
+            string r = (repo ?? "none").Replace('/', '_');
+            return Path.Combine(dataDir, "textures_" + r + ".txt");
+        }
+
+        List<KeyValuePair<string, byte[]>> ExportPendingTextures()
+        {
+            var list = new List<KeyValuePair<string, byte[]>>();
+            foreach (CelestialBody b in FlightGlobals.Bodies)
+            {
+                if (list.Count >= 3) break;
+                lock (texBusy) { if (texDone.Contains(b.name) || texBusy.Contains(b.name)) continue; }
+                byte[] jpg = null;
+                try { jpg = ExportTexture(b); }
+                catch (Exception e) { Log("texture " + b.name + ": " + e.Message); }
+                lock (texBusy)
+                {
+                    if (jpg == null) { texDone.Add(b.name); continue; } // nothing to export; don't retry every tick
+                    texBusy.Add(b.name);
+                }
+                list.Add(new KeyValuePair<string, byte[]>(b.name, jpg));
+            }
+            return list;
+        }
+
+        static byte[] ExportTexture(CelestialBody b)
+        {
+            if (b.scaledBody == null) return null;
+            Renderer r = b.scaledBody.GetComponent<Renderer>();
+            if (r == null || r.sharedMaterial == null) return null;
+            Material m = r.sharedMaterial;
+            Texture tex = null;
+            foreach (string prop in new[] { "_MainTex", "_ColorMap", "_Diffuse", "_EmissiveMap" })
+                if (m.HasProperty(prop)) { tex = m.GetTexture(prop); if (tex != null) break; }
+            if (tex == null) return null;
+            int w = Mathf.Min(tex.width, 2048), h = Mathf.Min(tex.height, 1024);
+            if (w < 2 || h < 2) return null;
+            RenderTexture rt = RenderTexture.GetTemporary(w, h, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
+            RenderTexture prev = RenderTexture.active;
+            try
+            {
+                Graphics.Blit(tex, rt);
+                RenderTexture.active = rt;
+                var t2 = new Texture2D(w, h, TextureFormat.RGB24, false);
+                t2.ReadPixels(new Rect(0, 0, w, h), 0, 0);
+                t2.Apply();
+                byte[] bytes = t2.EncodeToJPG(85);
+                Destroy(t2);
+                Log("exported texture " + b.name + " " + w + "x" + h + " (" + bytes.Length / 1024 + " KB)");
+                return bytes;
+            }
+            finally { RenderTexture.active = prev; RenderTexture.ReleaseTemporary(rt); }
+        }
+
+        void UploadTextures(List<KeyValuePair<string, byte[]>> texes)
+        {
+            lock (uploadLock)
+            {
+                foreach (var kv in texes)
+                {
+                    try
+                    {
+                        PutBytes("data/textures/" + kv.Key + ".jpg", kv.Value);
+                        lock (texBusy)
+                        {
+                            texDone.Add(kv.Key); texBusy.Remove(kv.Key);
+                            Directory.CreateDirectory(dataDir);
+                            File.AppendAllText(TexMarkerPath(), kv.Key + "\n");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log("texture upload " + kv.Key + " failed: " + e.Message);
+                        lock (texBusy) texBusy.Remove(kv.Key); // retried on a later tick
+                    }
+                }
+            }
+        }
+
         // ---- GitHub upload (runs on a pool thread) ----
 
         void Upload(string vessels, string bodies, string hist)
@@ -467,7 +555,9 @@ namespace FleetTracker
             }
         }
 
-        void Put(string path, string content)
+        void Put(string path, string content) { PutBytes(path, Encoding.UTF8.GetBytes(content)); }
+
+        void PutBytes(string path, byte[] content)
         {
             string url = "https://api.github.com/repos/" + repo + "/contents/" + path;
             for (int attempt = 0; attempt < 2; attempt++)
@@ -477,7 +567,7 @@ namespace FleetTracker
                 var body = new StringBuilder("{\"message\":")
                     .Append(Str("telemetry " + path))
                     .Append(",\"branch\":").Append(Str(branch))
-                    .Append(",\"content\":").Append(Str(Convert.ToBase64String(Encoding.UTF8.GetBytes(content))));
+                    .Append(",\"content\":").Append(Str(Convert.ToBase64String(content)));
                 if (sha != null) body.Append(",\"sha\":").Append(Str(sha));
                 body.Append('}');
 
