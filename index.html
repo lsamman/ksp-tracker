@@ -3,8 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>Fleet Tracker</title>
-<link rel="stylesheet" href="css/style.css">
+  <!-- Self-update: if a newer version is published, clear caches and reload it.
+       SITE_VERSION and version.json are kept in sync by ./bump-version.sh -->
+  <script>
+    (function () {
+      var SITE_VERSION = "20261008013604";
+      if (!window.fetch) return;
+      fetch("version.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d || !d.v || d.v === SITE_VERSION) return;
+          var key = "site.reloaded." + d.v;   // reload at most once per new version
+          try { if (sessionStorage.getItem(key)) return; sessionStorage.setItem(key, "1"); } catch (e) {}
+          function go() {
+            var u = new URL(location.href);
+            u.searchParams.set("v", d.v);      // a new URL, so the browser fetches fresh HTML
+            location.replace(u.toString());
+          }
+          var clears = [];
+          if (window.caches && caches.keys) clears.push(caches.keys().then(function (ks) { return Promise.all(ks.map(function (k) { return caches.delete(k); })); }));
+          if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) clears.push(navigator.serviceWorker.getRegistrations().then(function (rs) { return Promise.all(rs.map(function (r) { return r.unregister(); })); }));
+          Promise.all(clears).catch(function () {}).then(go, go);
+        })
+        .catch(function () {});
+    })();
+  </script>
+<link rel="stylesheet" href="css/style.css?v=20261008013604">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -31,6 +57,6 @@
 
 <section id="panel" hidden></section>
 
-<script type="module" src="js/main.js"></script>
+<script type="module" src="js/main.js?v=20261008013604"></script>
 </body>
 </html>

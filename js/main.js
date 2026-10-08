@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import { stateAt, samplePath, timeToApsis, meanMotion } from './orbits.js';
+import { stateAt, samplePath, timeToApsis, meanMotion } from './orbits.js?v=20261008013604';
 
 const POLL_MS = 60000;
 const $ = (id) => document.getElementById(id);
