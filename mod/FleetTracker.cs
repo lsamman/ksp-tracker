@@ -269,6 +269,9 @@ namespace FleetTracker
                 case VesselType.EVA:
                 case VesselType.SpaceObject:
                 case VesselType.Unknown:
+                case VesselType.DroppedPart:
+                case VesselType.DeployedSciencePart:
+                case VesselType.DeployedGroundPart:
                     return false;
             }
             return true;

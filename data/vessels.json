@@ -1,63 +1,48 @@
 {
- "ut": 5000000,
- "savedAt": "2026-10-08T01:11:15.829706Z",
- "save": "sample",
+ "ut": 542178909.5871853,
+ "savedAt": "2026-09-21T22:51:21.074875Z",
+ "save": "default",
  "warp": 1,
- "paused": false,
+ "paused": true,
  "heartbeatSeconds": 300,
  "vessels": [
   {
-   "id": 1,
-   "name": "Station:Kerbin Hub",
-   "type": "Station",
-   "situation": "ORBITING",
-   "body": "Kerbin",
+   "id": 629719840,
+   "name": "OV-100 Probe",
+   "type": "Probe",
+   "situation": "ESCAPING",
+   "body": "Sun",
    "active": false,
-   "launchUT": 1000000,
-   "missionTime": 4000000,
-   "lat": 0,
-   "lon": 0,
-   "alt": 100000,
-   "tracked": {
-    "type": "Station",
-    "name": "Kerbin Hub"
-   },
-   "crew": [
-    {
-     "name": "Jebediah Kerman",
-     "trait": "Pilot",
-     "level": 3
-    },
-    {
-     "name": "Bob Kerman",
-     "trait": "Scientist",
-     "level": 2
-    }
-   ],
+   "launchUT": 116511.85450579961,
+   "missionTime": 115.54864747129614,
+   "lat": -0.033189925168545055,
+   "lon": 133.34633540172595,
+   "alt": 91496.22469952493,
+   "crew": [],
    "resources": {
     "LiquidFuel": {
-     "amount": 420,
-     "max": 900
+     "amount": 0.0,
+     "max": 18.0
     },
-    "ElectricCharge": {
-     "amount": 1500,
-     "max": 2000
+    "Oxidizer": {
+     "amount": 0.0,
+     "max": 22.0
     }
    },
    "patches": [
     {
-     "body": "Kerbin",
-     "sma": 700000,
-     "ecc": 0.001,
-     "inc": 28.5,
-     "lan": 40,
-     "argPe": 0,
-     "maae": 0,
-     "epoch": 4999900,
-     "period": 1958.1267820709113,
-     "apA": 100000,
-     "peA": 95000,
-     "startUT": 4999900,
+     "body": "Sun",
+     "sma": 12221545856.139889,
+     "ecc": 0.14195791437515545,
+     "inc": 0.015185347203086477,
+     "lan": 4.031614516658124,
+     "argPe": 32.885845665730095,
+     "maae": 2.47202336487911,
+     "epoch": 196968.39800236118,
+     "period": 7840497.537745114,
+     "apA": 13694891016.317831,
+     "peA": 10225000695.961946,
+     "startUT": 196968.39800236118,
      "endUT": null,
      "trans": "FINAL"
     }
@@ -65,89 +50,1111 @@
    "maneuvers": []
   },
   {
-   "id": 2,
-   "name": "Rocket:Mun Hopper",
-   "type": "Ship",
+   "id": 147228897,
+   "name": "Helio Probe",
+   "type": "Probe",
    "situation": "ESCAPING",
-   "body": "Kerbin",
-   "active": true,
-   "launchUT": 4900000,
-   "missionTime": 100000,
-   "lat": 0,
-   "lon": 0,
-   "alt": 800000,
-   "tracked": {
-    "type": "Rocket",
-    "name": "Mun Hopper"
+   "body": "Sun",
+   "active": false,
+   "launchUT": 116597.40136615981,
+   "missionTime": 214.1208886749955,
+   "lat": 0.11916974279152592,
+   "lon": 177.7520960379171,
+   "alt": 394467.252651752,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 205.0,
+     "max": 205.0
+    },
+    "LiquidFuel": {
+     "amount": 0.0,
+     "max": 9.9
+    },
+    "Oxidizer": {
+     "amount": 0.0,
+     "max": 12.1
+    }
    },
+   "patches": [
+    {
+     "body": "Sun",
+     "sma": 8840193559.799809,
+     "ecc": 0.5581860807670194,
+     "inc": 0.09534090054760427,
+     "lan": 154.4491378414765,
+     "argPe": 218.81098498457388,
+     "maae": 2.8700654584758474,
+     "epoch": 460407177.3184784,
+     "period": 4823331.058987323,
+     "apA": 13513066556.16631,
+     "peA": 3644120563.433308,
+     "startUT": 460407177.3184784,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 300613439,
+   "name": "Eve Mission 1 Hab",
+   "type": "Station",
+   "situation": "ORBITING",
+   "body": "Sun",
+   "active": false,
+   "launchUT": 201074.04560028942,
+   "missionTime": 363617541.4822904,
+   "lat": 0.06755149828496985,
+   "lon": 148.36348346721022,
+   "alt": 5303702353.0949955,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 2030.0,
+     "max": 2030.0
+    },
+    "LiquidFuel": {
+     "amount": 264.00405788808274,
+     "max": 7200.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Sun",
+     "sma": 13580592828.372612,
+     "ecc": 0.5902033539609453,
+     "inc": 0.08117604777200388,
+     "lan": 86.8644328227249,
+     "argPe": 123.93675062786757,
+     "maae": 6.282012713285486,
+     "epoch": 363818271.43817395,
+     "period": 9184013.279535668,
+     "apA": 21334304264.45609,
+     "peA": 5303681392.289137,
+     "startUT": 363818271.43817395,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 91683217,
+   "name": "Eve Surface Probe",
+   "type": "Base",
+   "situation": "LANDED",
+   "body": "Eve",
+   "active": false,
+   "launchUT": 4187128.583337119,
+   "missionTime": 569944.3687037518,
+   "lat": 8.75815669033843,
+   "lon": 138.07939765263066,
+   "alt": 1506.7412252590293,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 0.0,
+     "max": 5.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Eve",
+     "sma": NaN,
+     "ecc": 1.0,
+     "inc": 81.24184402875979,
+     "lan": 98.91751098994746,
+     "argPe": 90.00000000000001,
+     "maae": 0.0,
+     "epoch": 542178867.967225,
+     "period": null,
+     "apA": null,
+     "peA": NaN,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 292955440,
+   "name": "Duna Orbiter",
+   "type": "Probe",
+   "situation": "ORBITING",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 72555865.86841893,
+   "missionTime": 237.2514653801918,
+   "lat": -47.031790151010725,
+   "lon": 114.19518529412974,
+   "alt": 2806306.7589283995,
+   "crew": [],
+   "resources": {
+    "Ablator": {
+     "amount": 800.0,
+     "max": 800.0
+    },
+    "ElectricCharge": {
+     "amount": 4014.722900390625,
+     "max": 4015.0
+    },
+    "LiquidFuel": {
+     "amount": 259.56725434655766,
+     "max": 270.0
+    },
+    "Oxidizer": {
+     "amount": 317.24886580941427,
+     "max": 330.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 1762460.699014415,
+     "ecc": 0.7811404364837704,
+     "inc": 132.56064913134628,
+     "lan": 257.4711460563153,
+     "argPe": 80.68143078092562,
+     "maae": 3.3565426117272654,
+     "epoch": 72555981.31491834,
+     "period": 26780.206036845193,
+     "apA": 2819190.018728026,
+     "peA": 65731.37930080376,
+     "startUT": 72555981.31491834,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 230678292,
+   "name": "Duna Rover",
+   "type": "Rover",
+   "situation": "LANDED",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 72567892.49244726,
+   "missionTime": 556.7998838424683,
+   "lat": 44.3710984255415,
+   "lon": -116.19186660405003,
+   "alt": 4796.095328312193,
    "crew": [],
    "resources": {
     "LiquidFuel": {
-     "amount": 300,
-     "max": 360
+     "amount": 22.50876366670291,
+     "max": 97.2
+    },
+    "Oxidizer": {
+     "amount": 27.510706751164623,
+     "max": 118.8
+    },
+    "ElectricCharge": {
+     "amount": 919.998927970385,
+     "max": 920.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": NaN,
+     "ecc": 1.0,
+     "inc": 45.628903243455035,
+     "lan": 345.9083888559119,
+     "argPe": 90.0,
+     "maae": 0.0,
+     "epoch": 542178867.967225,
+     "period": null,
+     "apA": null,
+     "peA": NaN,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 241772851,
+   "name": "Solar Observer",
+   "type": "Probe",
+   "situation": "ORBITING",
+   "body": "Sun",
+   "active": false,
+   "launchUT": 74012579.22314551,
+   "missionTime": 105021.00464139879,
+   "lat": 0.008376270604484124,
+   "lon": -6.013882653064745,
+   "alt": 13345431606.979885,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 12.98741009729099,
+     "max": 540.0
+    },
+    "Oxidizer": {
+     "amount": 13.612015676940587,
+     "max": 660.0
+    },
+    "ElectricCharge": {
+     "amount": 999.9980000000446,
+     "max": 1000.0
+    },
+    "MonoPropellant": {
+     "amount": 118.05860102365085,
+     "max": 120.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Sun",
+     "sma": 11690781402.492582,
+     "ecc": 0.16393771652543135,
+     "inc": 0.11520892939414848,
+     "lan": 194.48360535234795,
+     "argPe": 185.0425164242143,
+     "maae": 3.1206645571924407,
+     "epoch": 74117600.22778691,
+     "period": 7335331.078248667,
+     "apA": 13345741410.015198,
+     "peA": 9512621394.969969,
+     "startUT": 74117600.22778691,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 254413297,
+   "name": "ECV-LV 1 Duner Relay",
+   "type": "Relay",
+   "situation": "FLYING",
+   "body": "Kerbin",
+   "active": false,
+   "launchUT": 313622218.83705884,
+   "missionTime": 398.22321462631226,
+   "lat": -0.3777129447076775,
+   "lon": 77.70211886929549,
+   "alt": 36180.85283716861,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 1630.0,
+     "max": 1630.0
+    },
+    "MonoPropellant": {
+     "amount": 0.9172597558818469,
+     "max": 200.0
     }
    },
    "patches": [
     {
      "body": "Kerbin",
-     "sma": 900000,
-     "ecc": 0.7,
-     "inc": 10,
-     "lan": 0,
-     "argPe": 0,
-     "maae": 0,
-     "epoch": 4999950,
-     "period": 9000,
-     "apA": 1200000.0,
-     "peA": 300000,
-     "startUT": 4999950,
-     "endUT": 5003000,
-     "trans": "ESCAPE"
+     "sma": 696548.4705915295,
+     "ecc": 0.086667084956768,
+     "inc": 1.0686970292005848,
+     "lan": 198.08735855602873,
+     "argPe": 200.5475650823587,
+     "maae": 0.0022115716578292137,
+     "epoch": 313622617.06027347,
+     "period": 1943.6637220722585,
+     "apA": 156916.29606879246,
+     "peA": 36180.64511426655,
+     "startUT": 313622617.06027347,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 180353858,
+   "name": "DAEP",
+   "type": "Relay",
+   "situation": "ESCAPING",
+   "body": "Sun",
+   "active": false,
+   "launchUT": 323367214.38002354,
+   "missionTime": 15955605.705563605,
+   "lat": -0.7653481008283577,
+   "lon": -56.95299670071211,
+   "alt": 486253.3012119094,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 719.9807804552178,
+     "max": 1845.0
     },
+    "Oxidizer": {
+     "amount": 0.0,
+     "max": 2255.0
+    },
+    "ElectricCharge": {
+     "amount": 4.245595769951952,
+     "max": 15.0
+    }
+   },
+   "patches": [
     {
      "body": "Sun",
-     "sma": 13700000000,
-     "ecc": 0.02,
-     "inc": 0.1,
-     "lan": 0,
-     "argPe": 0,
-     "maae": 0.5,
-     "epoch": 5003000,
-     "period": 9200000.0,
-     "apA": 10000000000.0,
-     "peA": 10000000000.0,
-     "startUT": 5003000,
+     "sma": 17544544803.783966,
+     "ecc": 0.22469826155730366,
+     "inc": 0.056921289417896134,
+     "lan": 312.1927899200086,
+     "argPe": 180.94016978732344,
+     "maae": 0.031326498143105966,
+     "epoch": 339400642.5221486,
+     "period": 13485515.968657978,
+     "apA": 21225173521.00845,
+     "peA": 13340716086.559484,
+     "startUT": 339400642.5221486,
      "endUT": null,
      "trans": "FINAL"
     }
    ],
    "maneuvers": [
     {
-     "ut": 5001200,
+     "ut": 339322538.20095676,
      "dv": [
-      0,
-      0,
-      150
+      2.4290095731541896,
+      -60.00709928698599,
+      981.4346990071531
      ],
-     "dvMag": 150
+     "dvMag": 983.2704716748112
+    },
+    {
+     "ut": 346202940.1410474,
+     "dv": [
+      9.347900231659878e-11,
+      1.4569678796760854e-09,
+      -526.1203629005811
+     ],
+     "dvMag": 526.1203629005811
     }
    ]
   },
   {
-   "id": 3,
-   "name": "Base:Mun One",
+   "id": 126591639,
+   "name": "DAEP Relay",
+   "type": "Relay",
+   "situation": "SUB_ORBITAL",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 339322609.43275285,
+   "missionTime": 6947557.689111173,
+   "lat": 85.30875371673791,
+   "lon": -146.72721521315964,
+   "alt": 82705.44025841268,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 125.96018727535932,
+     "max": 342.0
+    },
+    "Oxidizer": {
+     "amount": 153.95132728522964,
+     "max": 418.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 409440.272182435,
+     "ecc": 0.12059772015974306,
+     "inc": 94.49321567471561,
+     "lan": 95.51290273049233,
+     "argPe": 2.26964054693742,
+     "maae": 1.0504999291325812,
+     "epoch": 346270041.1218903,
+     "period": 2998.6141612132265,
+     "apA": 138817.83554922126,
+     "peA": 40062.708815648686,
+     "startUT": 346270041.1218903,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 164692393,
+   "name": "DP&PSP on HVL Relay",
+   "type": "Relay",
+   "situation": "ORBITING",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 345765675.720135,
+   "missionTime": 2030.514871954918,
+   "lat": 2.8050077006604965,
+   "lon": -147.96390923574452,
+   "alt": 54812.07348200568,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 342.0,
+     "max": 342.0
+    },
+    "Oxidizer": {
+     "amount": 418.0,
+     "max": 418.0
+    },
+    "ElectricCharge": {
+     "amount": 1000.0,
+     "max": 1000.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 517386.67367439467,
+     "ecc": 0.27674374051894934,
+     "inc": 90.80152401740081,
+     "lan": 286.6302889958172,
+     "argPe": 184.2083187589025,
+     "maae": 6.216477658546781,
+     "epoch": 345767706.2350069,
+     "period": 4259.490062771892,
+     "apA": 340570.19704170374,
+     "peA": 54203.150307085656,
+     "startUT": 345767706.2350069,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 899250341,
+   "name": "Duna Car",
+   "type": "Rover",
+   "situation": "LANDED",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 346222870.45436406,
+   "missionTime": 20805232.62453848,
+   "lat": -3.001639550945359,
+   "lon": -166.94338106132673,
+   "alt": 4661.097571288992,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 3570.0,
+     "max": 3570.0
+    },
+    "MonoPropellant": {
+     "amount": 25.0,
+     "max": 25.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": NaN,
+     "ecc": 1.0,
+     "inc": 93.00166787567431,
+     "lan": 295.1568499646406,
+     "argPe": 90.00000000000001,
+     "maae": 0.0,
+     "epoch": 542178867.967225,
+     "period": null,
+     "apA": null,
+     "peA": NaN,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 300502817,
+   "name": "DAEP Relay",
+   "type": "Relay",
+   "situation": "ORBITING",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 346269202.691983,
+   "missionTime": 1691.917468070984,
+   "lat": 1.9957101538407163,
+   "lon": 136.16687467109702,
+   "alt": 96411.57821789186,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 89.61771191800796,
+     "max": 90.0
+    },
+    "Oxidizer": {
+     "amount": 109.53275898839496,
+     "max": 110.0
+    },
+    "ElectricCharge": {
+     "amount": 998.1912903796058,
+     "max": 1015.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 393497.31385944446,
+     "ecc": 0.05823377831086552,
+     "inc": 94.47585270867611,
+     "lan": 95.50568097147027,
+     "argPe": 357.61659980568066,
+     "maae": 3.1490648740754743,
+     "epoch": 346270894.60945106,
+     "period": 2825.1883706208255,
+     "apA": 96412.1492006564,
+     "peA": 50582.47851823253,
+     "startUT": 346270894.60945106,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 113361130,
+   "name": "Duna Base",
    "type": "Base",
    "situation": "LANDED",
-   "body": "Mun",
+   "body": "Duna",
    "active": false,
-   "launchUT": 2000000,
-   "missionTime": 3000000,
-   "lat": 10,
-   "lon": 45,
-   "alt": 0,
+   "launchUT": 346322256.7115103,
+   "missionTime": 20705846.367392242,
+   "lat": -3.0028914306555587,
+   "lon": -166.94202619414736,
+   "alt": 4660.807937247737,
+   "crew": [
+    {
+     "name": "Zelwig Kerman",
+     "trait": "Pilot",
+     "level": 0
+    },
+    {
+     "name": "Andock Kerman",
+     "trait": "Scientist",
+     "level": 0
+    }
+   ],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 2830.0,
+     "max": 2830.0
+    },
+    "MonoPropellant": {
+     "amount": 9.782656436536083,
+     "max": 10.0
+    },
+    "LiquidFuel": {
+     "amount": 72.9,
+     "max": 72.9
+    },
+    "Oxidizer": {
+     "amount": 89.1,
+     "max": 89.1
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 162330.91158318712,
+     "ecc": 0.9999999999999999,
+     "inc": 93.00251381924268,
+     "lan": 295.158133023541,
+     "argPe": 90.0,
+     "maae": 3.1415926207170166,
+     "epoch": 542178867.967225,
+     "period": 748.5771959746718,
+     "apA": 4661.823166374234,
+     "peA": -320000.0,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 805295432,
+   "name": "Nuke Tug",
+   "type": "Probe",
+   "situation": "ORBITING",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 347645596.40916806,
+   "missionTime": 1363.3573126792908,
+   "lat": 0.16228010414041671,
+   "lon": -75.14855577369568,
+   "alt": 137885.0285896411,
    "crew": [],
-   "resources": {},
-   "patches": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 1012.1008669635152,
+     "max": 1015.0
+    },
+    "LiquidFuel": {
+     "amount": 2590.371767742875,
+     "max": 9600.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 490848.66444975225,
+     "ecc": 0.08030941473595908,
+     "inc": 178.57778203162422,
+     "lan": 238.84055911933032,
+     "argPe": 137.5783578711204,
+     "maae": 0.4566537385587931,
+     "epoch": 347646909.84970826,
+     "period": 3936.0098108092557,
+     "apA": 210268.43341563898,
+     "peA": 131428.89548386546,
+     "startUT": 347646909.84970826,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 275300498,
+   "name": "Surface Transportation Vehicle + Tug",
+   "type": "Ship",
+   "situation": "LANDED",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 347649916.3984765,
+   "missionTime": 19378186.68042606,
+   "lat": -3.0025350396839356,
+   "lon": -166.96040995703316,
+   "alt": 4660.388161966344,
+   "crew": [],
+   "resources": {
+    "Ablator": {
+     "amount": 1799.4384672728388,
+     "max": 1800.0
+    },
+    "Ore": {
+     "amount": 75.0,
+     "max": 75.0
+    },
+    "ElectricCharge": {
+     "amount": 4177.4309432122345,
+     "max": 4180.0
+    },
+    "MonoPropellant": {
+     "amount": 470.6412676516498,
+     "max": 780.0
+    },
+    "LiquidFuel": {
+     "amount": 4049.884560410478,
+     "max": 7200.0
+    },
+    "Oxidizer": {
+     "amount": 8800.0,
+     "max": 8800.0
+    },
+    "SolidFuel": {
+     "amount": 0.0,
+     "max": 16.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 0.0,
+     "ecc": 1.0,
+     "inc": 93.00265498240431,
+     "lan": 295.13976436837225,
+     "argPe": 90.0,
+     "maae": 0.0,
+     "epoch": 542178867.967225,
+     "period": null,
+     "apA": null,
+     "peA": -320000.0,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 325609390,
+   "name": "Eve Mission 1 Ship Lander",
+   "type": "Lander",
+   "situation": "ORBITING",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 367378279.18869257,
+   "missionTime": 742.738671541214,
+   "lat": -0.40398883101675265,
+   "lon": 132.82425674668133,
+   "alt": 135396.91283198103,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 0.0,
+     "max": 50.0
+    },
+    "MonoPropellant": {
+     "amount": 0.0,
+     "max": 15.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 457884.4674696764,
+     "ecc": 0.006536464271638199,
+     "inc": 179.57229856500436,
+     "lan": 225.661364041015,
+     "argPe": 216.83774006304628,
+     "maae": 5.679730292964073,
+     "epoch": 367378350.5811267,
+     "period": 3546.2440407309387,
+     "apA": 140877.41293182998,
+     "peA": 134891.52200752276,
+     "startUT": 367378350.5811267,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 190039545,
+   "name": "Eeloo TV",
+   "type": "Station",
+   "situation": "ESCAPING",
+   "body": "Sun",
+   "active": false,
+   "launchUT": 367458449.1798489,
+   "missionTime": 154998704.11211944,
+   "lat": 1.9607553937169937,
+   "lon": -35.98395421539416,
+   "alt": 4905595.914858044,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 4023.3528818334366,
+     "max": 14400.0
+    },
+    "ElectricCharge": {
+     "amount": 2015.0,
+     "max": 2015.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Sun",
+     "sma": 19869274878.148697,
+     "ecc": 0.5793722116329051,
+     "inc": 0.7962317370348369,
+     "lan": 95.95453792545283,
+     "argPe": 92.92943785806582,
+     "maae": 5.780192646618307,
+     "epoch": 522471536.31259596,
+     "period": 16252771.789169885,
+     "apA": 31119380607.84383,
+     "peA": 8095969148.453566,
+     "startUT": 522471536.31259596,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 406257234,
+   "name": "Eeloo 2",
+   "type": "Lander",
+   "situation": "ORBITING",
+   "body": "Kerbin",
+   "active": false,
+   "launchUT": 367462003.38281035,
+   "missionTime": 10900823.55189526,
+   "lat": 0.3007552039315584,
+   "lon": 151.5965466054382,
+   "alt": 546485.6603577924,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 0.0,
+     "max": 5760.0
+    },
+    "Oxidizer": {
+     "amount": 0.0,
+     "max": 7040.0
+    },
+    "MonoPropellant": {
+     "amount": 178.3297055384808,
+     "max": 200.0
+    },
+    "ElectricCharge": {
+     "amount": 29.998400000035762,
+     "max": 30.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Kerbin",
+     "sma": 2077443.0128792764,
+     "ecc": 0.4492185172816043,
+     "inc": 0.47185667696030714,
+     "lan": 68.1081381183763,
+     "argPe": 133.9269178424548,
+     "maae": 0.019925683591113644,
+     "epoch": 378362797.4547337,
+     "period": 10011.238165230478,
+     "apA": 2410668.8828619337,
+     "peA": 544217.1428966189,
+     "startUT": 378362797.4547337,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": [
+    {
+     "ut": 378362796.6751845,
+     "dv": [
+      17.229204790716267,
+      8.564714705362247,
+      2115.7824896500388
+     ],
+     "dvMag": 2115.8699731659835
+    },
+    {
+     "ut": 423000361.68233496,
+     "dv": [
+      3.9051428757375106e-11,
+      -5.4569682106375694e-12,
+      -2521.2158711696293
+     ],
+     "dvMag": 2521.2158711696293
+    }
+   ]
+  },
+  {
+   "id": 270035298,
+   "name": "Eeloo 2 Lander Probe",
+   "type": "Probe",
+   "situation": "LANDED",
+   "body": "Gilly",
+   "active": false,
+   "launchUT": 425343853.4547146,
+   "missionTime": 1965.2239519357681,
+   "lat": -8.028417398928935,
+   "lon": 103.98998041413239,
+   "alt": 748.8251458509476,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 99.15848814731315,
+     "max": 14400.0
+    },
+    "ElectricCharge": {
+     "amount": 1740.5849770144237,
+     "max": 2015.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Gilly",
+     "sma": 105374.90152666629,
+     "ecc": 0.9999999999999999,
+     "inc": 98.02842360446768,
+     "lan": 109.43408612177336,
+     "argPe": 90.0,
+     "maae": 3.1415926207170166,
+     "epoch": 542178867.967225,
+     "period": 74648.79627855161,
+     "apA": 197749.80305333258,
+     "peA": -12999.999999999989,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 54455796,
+   "name": "Eeloo 2 Lander",
+   "type": "Lander",
+   "situation": "LANDED",
+   "body": "Gilly",
+   "active": false,
+   "launchUT": 425345075.24225116,
+   "missionTime": 1023.9161478877068,
+   "lat": -6.624939422615138,
+   "lon": 104.01992251147104,
+   "alt": 184.18786541052395,
+   "crew": [],
+   "resources": {
+    "ElectricCharge": {
+     "amount": 969.9984000000715,
+     "max": 970.0
+    },
+    "MonoPropellant": {
+     "amount": 9.430263945536362,
+     "max": 15.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Gilly",
+     "sma": 0.0,
+     "ecc": 1.0000000000000002,
+     "inc": 96.62495028098698,
+     "lan": 109.4653578517034,
+     "argPe": 90.0,
+     "maae": Infinity,
+     "epoch": 542178867.967225,
+     "period": null,
+     "apA": null,
+     "peA": -13000.0,
+     "startUT": 542178867.967225,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 249167897,
+   "name": "Eeloo 2 Lander",
+   "type": "Lander",
+   "situation": "ORBITING",
+   "body": "Gilly",
+   "active": false,
+   "launchUT": 425345172.93928236,
+   "missionTime": 13781.384067058563,
+   "lat": 10.952718567594491,
+   "lon": -2.830519769900263,
+   "alt": 49892.926949127665,
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 167.47862337281697,
+     "max": 720.0
+    },
+    "Oxidizer": {
+     "amount": 204.69606270704617,
+     "max": 880.0
+    },
+    "ElectricCharge": {
+     "amount": 900.0,
+     "max": 900.0
+    },
+    "MonoPropellant": {
+     "amount": 222.25829479744635,
+     "max": 240.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Gilly",
+     "sma": 260025.9324016566,
+     "ecc": 0.002951404338167947,
+     "inc": 168.67505817682107,
+     "lan": 139.3278295232344,
+     "argPe": 155.55965969954715,
+     "maae": 4.838436177983909,
+     "epoch": 425358929.6033546,
+     "period": 289362.3547310414,
+     "apA": 247793.37406658303,
+     "peA": 246258.4907367302,
+     "startUT": 425358929.6033546,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 336041403,
+   "name": "Duna Station",
+   "type": "Station",
+   "situation": "ORBITING",
+   "body": "Duna",
+   "active": false,
+   "launchUT": 542131114.5643196,
+   "missionTime": 47744.682913661,
+   "lat": -0.36616356197807587,
+   "lon": 90.14569009909344,
+   "alt": 156838.2541886699,
+   "crew": [
+    {
+     "name": "Jebediah Kerman",
+     "trait": "Pilot",
+     "level": 0
+    },
+    {
+     "name": "Bill Kerman",
+     "trait": "Engineer",
+     "level": 0
+    },
+    {
+     "name": "Bob Kerman",
+     "trait": "Scientist",
+     "level": 0
+    },
+    {
+     "name": "Camfal Kerman",
+     "trait": "Engineer",
+     "level": 0
+    }
+   ],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 21895.614668636783,
+     "max": 26430.0
+    },
+    "Oxidizer": {
+     "amount": 28250.937735034295,
+     "max": 29370.0
+    },
+    "ElectricCharge": {
+     "amount": 9415.0,
+     "max": 9415.0
+    },
+    "MonoPropellant": {
+     "amount": 642.5687548934309,
+     "max": 1450.0
+    },
+    "Ablator": {
+     "amount": 820.0,
+     "max": 820.0
+    },
+    "Ore": {
+     "amount": 0.0,
+     "max": 75.0
+    }
+   },
+   "patches": [
+    {
+     "body": "Duna",
+     "sma": 478650.3351209601,
+     "ecc": 0.016366944358289857,
+     "inc": 179.4483222929288,
+     "lan": 143.79139017852094,
+     "argPe": 144.0885061008915,
+     "maae": 1.3208338256056327,
+     "epoch": 542178859.2472333,
+     "period": 3790.2015314377104,
+     "apA": 166484.37852296163,
+     "peA": 150816.29171895853,
+     "startUT": 542178859.2472333,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
    "maneuvers": []
   }
  ]
