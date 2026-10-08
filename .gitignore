@@ -1,2 +1,3 @@
 mod/out/
 *.cfg.bak
+__pycache__/

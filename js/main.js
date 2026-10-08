@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import { stateAt, samplePath, timeToApsis, meanMotion } from './orbits.js?v=20261008014049';
+import { stateAt, samplePath, timeToApsis, meanMotion } from './orbits.js?v=20261008014330';
 
 const POLL_MS = 60000;
 const $ = (id) => document.getElementById(id);
@@ -32,9 +32,10 @@ const DATA_BRANCH = 'data';
 
 async function getJSON(name) {
   if (repo) {
+    // raw.githubusercontent has no rate limit (the API allows only 60 requests/hour per visitor);
+    // the minute-sized query string keeps its CDN cache from serving data older than ~1 minute
     try {
-      const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/${name}?ref=${DATA_BRANCH}`,
-        { headers: { Accept: 'application/vnd.github.raw+json' } });
+      const r = await fetch(`https://raw.githubusercontent.com/${repo}/${DATA_BRANCH}/data/${name}?t=${Math.floor(Date.now() / 60000)}`);
       if (r.ok) return await r.json();
       if (r.status === 404) return null;
     } catch { /* fall through to local */ }
