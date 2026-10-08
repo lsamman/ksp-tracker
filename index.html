@@ -9,7 +9,7 @@
        SITE_VERSION and version.json are kept in sync by ./bump-version.sh -->
   <script>
     (function () {
-      var SITE_VERSION = "20261008014330";
+      var SITE_VERSION = "20261008020612";
       if (!window.fetch) return;
       fetch("version.json?t=" + Date.now(), { cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
@@ -30,7 +30,7 @@
         .catch(function () {});
     })();
   </script>
-<link rel="stylesheet" href="css/style.css?v=20261008014330">
+<link rel="stylesheet" href="css/style.css?v=20261008020612">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -57,6 +57,6 @@
 
 <section id="panel" hidden></section>
 
-<script type="module" src="js/main.js?v=20261008014330"></script>
+<script type="module" src="js/main.js?v=20261008020612"></script>
 </body>
 </html>

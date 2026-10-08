@@ -83,6 +83,14 @@ def write_bodies(out):
     json.dump(dict(bodies=bodies), open(os.path.join(out, "bodies.json"), "w"), indent=1)
 
 
+def clean(x):
+    """JSON has no NaN/Infinity: turn any non-finite number into null."""
+    if isinstance(x, float) and not math.isfinite(x): return None
+    if isinstance(x, dict): return {k: clean(v) for k, v in x.items()}
+    if isinstance(x, list): return [clean(v) for v in x]
+    return x
+
+
 def main(src, out):
     root = parse(open(src, encoding="utf-8", errors="replace"))
     game = kids(root, "GAME")[0]
@@ -105,13 +113,15 @@ def main(src, out):
             ref = int(num(val(o, "REF")))
             body = BODIES[ref] if ref < len(BODIES) else None
             sma, ecc = num(val(o, "SMA")), num(val(o, "ECC"))
+            elems = [sma, ecc] + [num(val(o, k)) for k in ("INC", "LAN", "LPE", "MNA", "EPH")]
             R = RADIUS.get(body, 0)
             mu = MU.get(body, 1)
-            period = 2 * math.pi * math.sqrt(abs(sma) ** 3 / mu) if 0 <= ecc < 1 else None
-            patches.append(dict(body=body, sma=sma, ecc=ecc, inc=num(val(o, "INC")), lan=num(val(o, "LAN")),
-                                argPe=num(val(o, "LPE")), maae=num(val(o, "MNA")), epoch=num(val(o, "EPH")), period=period,
-                                apA=sma * (1 + ecc) - R if ecc < 1 else None, peA=sma * (1 - ecc) - R,
-                                startUT=num(val(o, "EPH")), endUT=None, trans="FINAL"))
+            # the save stores NaN/Infinity for some invalid orbits; those vessels keep their position data but get no trajectory
+            if all(math.isfinite(x) for x in elems):
+                period = 2 * math.pi * math.sqrt(abs(sma) ** 3 / mu) if 0 <= ecc < 1 else None
+                patches.append(dict(body=body, sma=sma, ecc=ecc, inc=elems[2], lan=elems[3], argPe=elems[4], maae=elems[5],
+                                    epoch=elems[6], period=period, apA=sma * (1 + ecc) - R if ecc < 1 else None,
+                                    peA=sma * (1 - ecc) - R, startUT=elems[6], endUT=None, trans="FINAL"))
         if body is None:
             continue
         # crew and resources
@@ -152,8 +162,8 @@ def main(src, out):
     import datetime
     saved = datetime.datetime.fromtimestamp(mtime, datetime.timezone.utc).isoformat().replace("+00:00", "Z")
     os.makedirs(out, exist_ok=True)
-    json.dump(dict(ut=ut, savedAt=saved, save=os.path.basename(os.path.dirname(src)), warp=1, paused=True,
-                   heartbeatSeconds=300, vessels=vessels), open(os.path.join(out, "vessels.json"), "w"), indent=1)
+    json.dump(clean(dict(ut=ut, savedAt=saved, save=os.path.basename(os.path.dirname(src)), warp=1, paused=True,
+                   heartbeatSeconds=300, vessels=vessels)), open(os.path.join(out, "vessels.json"), "w"), indent=1, allow_nan=False)
     write_bodies(out)
     json.dump(dict(save="default", entries={}), open(os.path.join(out, "history.json"), "w"))
     print(f"{len(vessels)} vessels at UT {ut:.0f}; types:", sorted({v['type'] for v in vessels}), "bodies:", sorted({v['body'] for v in vessels}))
