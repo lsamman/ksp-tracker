@@ -1,0 +1,154 @@
+{
+ "ut": 5000000,
+ "savedAt": "2026-10-08T01:11:15.829706Z",
+ "save": "sample",
+ "warp": 1,
+ "paused": false,
+ "heartbeatSeconds": 300,
+ "vessels": [
+  {
+   "id": 1,
+   "name": "Station:Kerbin Hub",
+   "type": "Station",
+   "situation": "ORBITING",
+   "body": "Kerbin",
+   "active": false,
+   "launchUT": 1000000,
+   "missionTime": 4000000,
+   "lat": 0,
+   "lon": 0,
+   "alt": 100000,
+   "tracked": {
+    "type": "Station",
+    "name": "Kerbin Hub"
+   },
+   "crew": [
+    {
+     "name": "Jebediah Kerman",
+     "trait": "Pilot",
+     "level": 3
+    },
+    {
+     "name": "Bob Kerman",
+     "trait": "Scientist",
+     "level": 2
+    }
+   ],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 420,
+     "max": 900
+    },
+    "ElectricCharge": {
+     "amount": 1500,
+     "max": 2000
+    }
+   },
+   "patches": [
+    {
+     "body": "Kerbin",
+     "sma": 700000,
+     "ecc": 0.001,
+     "inc": 28.5,
+     "lan": 40,
+     "argPe": 0,
+     "maae": 0,
+     "epoch": 4999900,
+     "period": 1958.1267820709113,
+     "apA": 100000,
+     "peA": 95000,
+     "startUT": 4999900,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": []
+  },
+  {
+   "id": 2,
+   "name": "Rocket:Mun Hopper",
+   "type": "Ship",
+   "situation": "ESCAPING",
+   "body": "Kerbin",
+   "active": true,
+   "launchUT": 4900000,
+   "missionTime": 100000,
+   "lat": 0,
+   "lon": 0,
+   "alt": 800000,
+   "tracked": {
+    "type": "Rocket",
+    "name": "Mun Hopper"
+   },
+   "crew": [],
+   "resources": {
+    "LiquidFuel": {
+     "amount": 300,
+     "max": 360
+    }
+   },
+   "patches": [
+    {
+     "body": "Kerbin",
+     "sma": 900000,
+     "ecc": 0.7,
+     "inc": 10,
+     "lan": 0,
+     "argPe": 0,
+     "maae": 0,
+     "epoch": 4999950,
+     "period": 9000,
+     "apA": 1200000.0,
+     "peA": 300000,
+     "startUT": 4999950,
+     "endUT": 5003000,
+     "trans": "ESCAPE"
+    },
+    {
+     "body": "Sun",
+     "sma": 13700000000,
+     "ecc": 0.02,
+     "inc": 0.1,
+     "lan": 0,
+     "argPe": 0,
+     "maae": 0.5,
+     "epoch": 5003000,
+     "period": 9200000.0,
+     "apA": 10000000000.0,
+     "peA": 10000000000.0,
+     "startUT": 5003000,
+     "endUT": null,
+     "trans": "FINAL"
+    }
+   ],
+   "maneuvers": [
+    {
+     "ut": 5001200,
+     "dv": [
+      0,
+      0,
+      150
+     ],
+     "dvMag": 150
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Base:Mun One",
+   "type": "Base",
+   "situation": "LANDED",
+   "body": "Mun",
+   "active": false,
+   "launchUT": 2000000,
+   "missionTime": 3000000,
+   "lat": 10,
+   "lon": 45,
+   "alt": 0,
+   "crew": [],
+   "resources": {},
+   "patches": [],
+   "maneuvers": []
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+{
+ "bodies": [
+  {
+   "name": "Sun",
+   "radius": 261600000,
+   "mu": 1.1723328e+18,
+   "soi": null,
+   "rotationPeriod": 432000,
+   "atmosphere": true,
+   "color": "ffcc55"
+  },
+  {
+   "name": "Eve",
+   "radius": 700000,
+   "mu": 8171730200000.0,
+   "soi": 85109365,
+   "rotationPeriod": 0,
+   "atmosphere": true,
+   "color": "a070c0",
+   "orbit": {
+    "body": "Sun",
+    "sma": 9832684544,
+    "ecc": 0.01,
+    "inc": 2.1,
+    "lan": 15,
+    "argPe": 0,
+    "maae": 3.14,
+    "epoch": 0,
+    "period": 0,
+    "apA": 0,
+    "peA": 0,
+    "startUT": 0,
+    "endUT": null,
+    "trans": "FINAL"
+   }
+  },
+  {
+   "name": "Kerbin",
+   "radius": 600000,
+   "mu": 3531600000000.0,
+   "soi": 84159286,
+   "rotationPeriod": 0,
+   "atmosphere": true,
+   "color": "5090e0",
+   "orbit": {
+    "body": "Sun",
+    "sma": 13599840256,
+    "ecc": 0,
+    "inc": 0,
+    "lan": 0,
+    "argPe": 0,
+    "maae": 3.14,
+    "epoch": 0,
+    "period": 0,
+    "apA": 0,
+    "peA": 0,
+    "startUT": 0,
+    "endUT": null,
+    "trans": "FINAL"
+   }
+  },
+  {
+   "name": "Mun",
+   "radius": 200000,
+   "mu": 65138398000.0,
+   "soi": 2429559,
+   "rotationPeriod": 0,
+   "atmosphere": false,
+   "color": "aaaaaa",
+   "orbit": {
+    "body": "Kerbin",
+    "sma": 12000000,
+    "ecc": 0,
+    "inc": 0,
+    "lan": 0,
+    "argPe": 0,
+    "maae": 1.7,
+    "epoch": 0,
+    "period": 0,
+    "apA": 0,
+    "peA": 0,
+    "startUT": 0,
+    "endUT": null,
+    "trans": "FINAL"
+   }
+  },
+  {
+   "name": "Minmus",
+   "radius": 60000,
+   "mu": 1765800000.0,
+   "soi": 2247428,
+   "rotationPeriod": 0,
+   "atmosphere": false,
+   "color": "aaeedd",
+   "orbit": {
+    "body": "Kerbin",
+    "sma": 47000000,
+    "ecc": 0,
+    "inc": 6,
+    "lan": 78,
+    "argPe": 38,
+    "maae": 0.9,
+    "epoch": 0,
+    "period": 0,
+    "apA": 0,
+    "peA": 0,
+    "startUT": 0,
+    "endUT": null,
+    "trans": "FINAL"
+   }
+  },
+  {
+   "name": "Duna",
+   "radius": 320000,
+   "mu": 301363210000.0,
+   "soi": 47921949,
+   "rotationPeriod": 0,
+   "atmosphere": true,
+   "color": "d05a40",
+   "orbit": {
+    "body": "Sun",
+    "sma": 20726155264,
+    "ecc": 0.051,
+    "inc": 0.06,
+    "lan": 135.5,
+    "argPe": 0,
+    "maae": 3.14,
+    "epoch": 0,
+    "period": 0,
+    "apA": 0,
+    "peA": 0,
+    "startUT": 0,
+    "endUT": null,
+    "trans": "FINAL"
+   }
+  },
+  {
+   "name": "Jool",
+   "radius": 6000000,
+   "mu": 282528000000000.0,
+   "soi": 2455985200,
+   "rotationPeriod": 0,
+   "atmosphere": true,
+   "color": "60b050",
+   "orbit": {
+    "body": "Sun",
+    "sma": 68773560320,
+    "ecc": 0.05,
+    "inc": 1.304,
+    "lan": 52,
+    "argPe": 0,
+    "maae": 0.1,
+    "epoch": 0,
+    "period": 0,
+    "apA": 0,
+    "peA": 0,
+    "startUT": 0,
+    "endUT": null,
+    "trans": "FINAL"
+   }
+  }
+ ]
+}

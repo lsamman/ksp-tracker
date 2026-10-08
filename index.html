@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleet Tracker</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="scene"></div>
+
+<aside id="sidebar">
+  <header>
+    <h1>Fleet Tracker</h1>
+    <div id="status"><span id="live" class="badge">…</span> <span id="clock"></span></div>
+  </header>
+  <input id="filter" type="search" placeholder="Filter vessels…" autocomplete="off">
+  <h2>In flight</h2>
+  <ul id="vessel-list"></ul>
+  <h2>Bodies</h2>
+  <ul id="body-list"></ul>
+  <h2>Hangar history</h2>
+  <ul id="history-list"></ul>
+</aside>
+
+<section id="panel" hidden></section>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
